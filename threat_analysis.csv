@@ -1,0 +1,7 @@
+STRIDE Category,Threat,Risk Description,Mitigation / Controls
+S (Spoofing),Fake API requests / unauthorized users,Someone could send requests pretending to be a legitimate user,Add token-based auth (JWT) if multi-user; limit endpoints for demo
+T (Tampering),Modify storage.json,Attackers could edit JSON data outside app,Use file permissions; Docker volume isolation; validate input in Flask
+R (Repudiation),User deletes a todo and denies it,No audit trail,Log all operations in a separate log file (app.log)
+I (Information Disclosure),Exposed data via container / host volume,JSON file readable by others,Docker volume permissions; do not expose container to public network directly
+D (Denial of Service),Large request body crashes app / multiple simultaneous writes,App becomes unresponsive,FileLock prevents concurrent write issues; limit request size in Flask
+E (Elevation of Privilege),Malicious code execution inside container,Access host or other containers,Run container with unprivileged user; no root access; use latest security patches
